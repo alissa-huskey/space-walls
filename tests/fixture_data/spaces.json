@@ -1,0 +1,144 @@
+{
+  "SpacesDisplayConfiguration": {
+    "Management Data": {
+      "Monitors": [
+        {
+          "Current Space": {
+            "id64": 5,
+            "ManagedSpaceID": 5,
+            "type": 0,
+            "uuid": "53B40CA9-2DA4-4467-A321-C92F02B3CC34"
+          },
+          "Spaces": [
+            {
+              "id64": 1,
+              "ManagedSpaceID": 1,
+              "wsid": 1,
+              "type": 0,
+              "uuid": ""
+            },
+            {
+              "id64": 2,
+              "ManagedSpaceID": 2,
+              "type": 0,
+              "uuid": "FCCF230F-3904-433B-BB12-33269F0E388F"
+            },
+            {
+              "id64": 3,
+              "ManagedSpaceID": 3,
+              "type": 0,
+              "uuid": "F74BB6E3-C7F9-413A-9C4E-EB559A34995F"
+            },
+            {
+              "id64": 4,
+              "ManagedSpaceID": 4,
+              "type": 0,
+              "uuid": "20FB753F-4AAD-4CD6-8959-09CA04B3A6AD"
+            },
+            {
+              "id64": 5,
+              "ManagedSpaceID": 5,
+              "type": 0,
+              "uuid": "53B40CA9-2DA4-4467-A321-C92F02B3CC34"
+            },
+            {
+              "id64": 6,
+              "ManagedSpaceID": 6,
+              "type": 0,
+              "uuid": "D054481A-DE13-47A1-9490-885EC2F6AF24"
+            },
+            {
+              "id64": 7,
+              "ManagedSpaceID": 7,
+              "type": 0,
+              "uuid": "0F04BDA6-FE0C-40EE-A2A0-B25647741D1D"
+            },
+            {
+              "id64": 8,
+              "ManagedSpaceID": 8,
+              "type": 0,
+              "uuid": "E353D368-B212-4422-8C4A-DB471F4C19C0"
+            },
+            {
+              "id64": 9,
+              "ManagedSpaceID": 9,
+              "type": 0,
+              "uuid": "5C80A193-4E6E-41B7-BF68-CA5577DB4E67"
+            }
+          ],
+          "Display Identifier": "Main"
+        }
+      ],
+      "Management Mode": 0
+    },
+    "Space Properties": [
+      {
+        "name": "",
+        "windows": [
+          80,
+          118
+        ]
+      },
+      {
+        "name": "FCCF230F-3904-433B-BB12-33269F0E388F",
+        "windows": [
+          80
+        ]
+      },
+      {
+        "name": "F74BB6E3-C7F9-413A-9C4E-EB559A34995F",
+        "windows": [
+          80,
+          103
+        ]
+      },
+      {
+        "name": "20FB753F-4AAD-4CD6-8959-09CA04B3A6AD",
+        "windows": [
+          80
+        ]
+      },
+      {
+        "name": "53B40CA9-2DA4-4467-A321-C92F02B3CC34",
+        "windows": [
+          2935,
+          1265,
+          2896,
+          2894,
+          1088,
+          1086,
+          255,
+          253,
+          216,
+          214,
+          80
+        ]
+      },
+      {
+        "name": "D054481A-DE13-47A1-9490-885EC2F6AF24",
+        "windows": [
+          80
+        ]
+      },
+      {
+        "name": "0F04BDA6-FE0C-40EE-A2A0-B25647741D1D",
+        "windows": [
+          80
+        ]
+      },
+      {
+        "name": "E353D368-B212-4422-8C4A-DB471F4C19C0",
+        "windows": [
+          80
+        ]
+      },
+      {
+        "name": "5C80A193-4E6E-41B7-BF68-CA5577DB4E67",
+        "windows": [
+          80
+        ]
+      }
+    ]
+  },
+  "spans-displays": true
+}
