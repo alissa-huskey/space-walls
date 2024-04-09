@@ -1,4 +1,12 @@
--- This query will give you the results for just one display.
+--
+-- This SQL query should be run against the sqlite3 database:
+-- ~/Library/Application Support/Dock/desktoppicture.db
+-- 
+-- It will return the data.rowid, space_uuid and path to the wallpaper picture
+-- 
+--
+
+-- This query will give you the results for display 1
 
 SELECT data.rowid, space_uuid as space, value as wallpaper
 FROM preferences 

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# 
+# This script converts the com.apple.spaces plist to json
+# then uses jq to extract just the list of spaces
+#
+
+plutil -convert json -o spaces.json ~/Library/Preferences/com.apple.spaces.plist
+jq '.SpacesDisplayConfiguration["Management Data"]["Monitors"][0]["Spaces"]' spaces.json

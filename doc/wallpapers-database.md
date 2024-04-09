@@ -123,8 +123,8 @@ Download the [query.sql](assets/query.sql), then run the following command to
 save to store the data in the file `wallpapers.json`.
 
 ```bash
-db=~"/Library/Application Support/Dock/desktoppicture.db"
-sqlite -noheader -json "$db" < query.sql > wallpapers.json
+db=~/Library/Application\ Support/Dock/desktoppicture.db
+sqlite3 -noheader -json "$db" < query.sql > wallpapers.json
 ```
 
 ## Recreating the database

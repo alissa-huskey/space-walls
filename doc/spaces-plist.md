@@ -22,5 +22,5 @@ Then use your preferred method of handling `JSON` files.
 I'm fond of [jq](https://github.com/jqlang/jq), a command-line JSON parser.
 
 ```bash
-jq '.SpacesDisplayConfiguration["Management Data"]["Monitors"]["Spaces"]' spaces.json
+jq '.SpacesDisplayConfiguration["Management Data"]["Monitors"][0]["Spaces"]' spaces.json
 ```

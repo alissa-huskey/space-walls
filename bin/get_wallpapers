@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#
+# This script queries the desktoppicture sqlite database to get each screen
+# uuid and the path to the wallpaper picture, and exports the results in JSON
+#
+
+rootdir="$(cd "${0%/*}/." && pwd -P)"
+
+db=~/Library/Application\ Support/Dock/desktoppicture.db
+sqlite3 -noheader -json "$db" < "${rootdir}/query.sql"

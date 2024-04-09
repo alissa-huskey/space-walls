@@ -47,7 +47,7 @@ Using JXA
 * [JavaScript for Automation (JXA) Discussion](https://wiki.keyboardmaestro.com/JavaScript_for_Automation)
 * [Scripting with JXA](https://bru6.de/jxa/)
 
-See my example script [example.jxa]() for more info .
+See my example script [../bin/example.jxa]() for more info.
 
 ### osascript
 
