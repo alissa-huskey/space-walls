@@ -1,0 +1,83 @@
+#!/usr/bin/osascript -l JavaScript
+
+//
+// This is an example script of things I've cobbled together about JAX.
+//
+
+// Objective C library for standard system access (like $.exit)
+ObjC.import('stdlib')
+
+// Standard AppleScript commands like $.NSWorkspace
+ObjC.import('AppKit')
+
+// get the cuurrently running application
+var app = Application.currentApplication()
+
+// If I recall/understand correctly, this methods from AppleScript to JAX objects.
+app.includeStandardAdditions = true
+
+// Get a list of running applications
+var apps = $.NSWorkspace.sharedWorkspace.runningApplications
+
+// Unwrap the NSArray instance to a normal JS array
+apps = ObjC.unwrap(apps)
+
+// Introspection
+// =============
+//
+// See also: https://bru6.de/jxa/basics/working-with-apps/
+//
+
+// print objects available in global NameSpace
+globals = Object.getOwnPropertyNames(this)
+console.log("=== this: getOwnPropertyNames", "\n")
+for (i in globals) console.log("global:", globals[i]);
+
+// print the type of an object
+console.log("\n=== app: Object.prototype", "\n")
+type = Object.prototype.toString.call(app);
+console.log("type:", type)
+
+// The normal ways to list properties of an object don't work well on JXA objects.
+// At some point I found a way to, but I didn't write it down and can't
+// remember what it is.
+
+// only includes __private__
+// console.log("=== app: getOwnPropertyNames", "\n")
+type = Object.getOwnPropertyNames(app)
+console.log("\n=== app: getOwnPropertyNames", "\n")
+console.log(type)
+
+console.log("\n=== for (i in app):", "\n")
+// prints nothing
+for (i in app) console.log("prop:", i);
+
+// this will print a list of properties of Finder
+console.log("\n=== finder: .properties()", "\n")
+finder = Application("Finder")
+for (prop in finder.properties()) console.log("property:", prop)
+
+// but this will raise an error with my current app (iTerm)
+// because it doesn't have a .properties() method
+// for (prop in app.properties()) console.log(prop)
+
+// this will print the name and value for each property
+console.log("\n=== finder: .properties()", "\n")
+props = finder.properties()
+for (prop in props) console.log(`[ property: ${prop} ]\t:`, Automation.getDisplayString(props[prop]))
+
+// this will do the same thing, but at least won't raise an error for
+// Application objects that don't have a .properties() method
+console.log("\n=== finder: .propertiesOfClass()", "\n")
+props = finder.propertiesOfClass("application")
+for (i in props) console.log("property:", props[i]);
+
+// print elements of Finder
+console.log("\n=== finder: .elementsOfClass()", "\n")
+elems = finder.elementsOfClass("application")
+for (i in elems) console.log("element:", elems[i]);
+
+// exit the program
+$.exit(0)
+
+// vim:ft=javascript

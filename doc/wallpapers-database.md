@@ -1,45 +1,17 @@
-Notes
-=====
 
-* [Setting Wallpaper from the Command Line in Mac OS X](https://osxdaily.com/2015/08/28/set-wallpaper-command-line-macosx/)
+Wallpapers Database
+===================
+
 * [Setting the Desktop Image in macOS Mojave from the Command Line](https://www.tech-otaku.com/mac/setting-desktop-image-macos-mojave-from-command-line/)
 * [How do I change desktop background with a terminal command?](https://apple.stackexchange.com/questions/40644/how-do-i-change-desktop-background-with-a-terminal-command)
 * [pywal > wallpaper.py](https://github.com/dylanaraps/pywal/blob/master/pywal/wallpaper.py#L91)
-
-System Images
--------------
-
-System images are stored here:
-
-`/Library/Caches/Desktop Pictures/{uid}/lockscreen.png`
-
-This will give you a list of all pictures (though not the path).
-
-`plutil -p /System/Library/Desktop\ Pictures/.orderedPictures.plist | less`
-
-They may also be stored in one of the following:
-
-`~/Library/Application Support/com.apple.mobileAssetDesktop/`
-`/System/Library/Desktop Pictures`
-
-### Default Desktop Picture
-
-The default desktop pictures are stored here. However, it cannot be easily
-changed due to readonly FS.
-
-```
-/System/Library/CoreServices/DefaultBackground.jpg
-/System/Library/CoreServices/DefaultDesktop.heic
-```
-
-Wallpapers Database
--------------------
 
 The sqlite database containing all the relevant preferences is here:
 
 `~/Library/Application Support/Dock/desktoppicture.db`
 
-### Schema
+Schema
+------
 
 The database schema is not at all intuitive. To follow is what I have come to
 understand after a great deal of sleuthing.
@@ -54,35 +26,36 @@ involved in getting to the wallpaper information.
 
 What follows is a detailed explanation of each table in the schema and their respective columns.
 
-#### preferences
+### preferences
 
 * rowid      - primary key
 * picture_id - pictures.rowid
 * key        - number indicating what kind of value is stored in the data field
 * data_id    - data.rowid
 
-#### data
+### data
 
 * rowid - primary id
 * value
 
-#### pictures
+### pictures
 
 * rowid      - primary key
 * space_id   - spaces.rowid
 * display_id - displays.rowid
 
-#### spaces
+### spaces
 
 * rowid      - desktop number
 * space_uuid - uuid as found in com.apple.spaces
 
-#### displays
+### displays
 
 * rowid        -  primary key
 * display_uuid -
 
-### Decoding Preferences
+Decoding Preferences
+--------------------
 
 Each row of the `preferences` table contains a number in the `preferences.key`
 column that indicates what kind of setting it points to. That row is linked to
@@ -109,21 +82,22 @@ It's worth noting that most of these options have disappeared in the System
 Settings app as of macOS Sonoma (14.4.1). I have no idea if they will have any
 effect or if they are obsolete.
 
-#### picture orientation options
+### picture orientation options
 
 - 2: tile
 - 3: center
 - 4: stretch to fill screen
 - 5: fit to screen
 
-#### dynamic selection options
+### dynamic selection options
 
 - 0: Automatic (Light and Dark Desktops)
 - 1: Dynamic (Dynamic Desktops)
 - 2: Light (Still)
 - 3: Dark (Still)
 
-## Query
+Query
+-----
 
 The following query will extract which wallpapers are on each desktop (space).
 
@@ -153,7 +127,7 @@ db=~"/Library/Application Support/Dock/desktoppicture.db"
 sqlite -noheader -json "$db" < query.sql > wallpapers.json
 ```
 
-### Recreating the database
+## Recreating the database
 
 You can recreate the database with:
 
@@ -167,30 +141,3 @@ killall "System Preferences" > /dev/null 2>&1 \
 
 I guess you might need to do this if you messed it up badly. I'd recommend
 backing it up (just make a copy somewhere else) before making any changes.
-
-Spaces plist
-------------
-
-Information about your spaces is stored in the `plist` file:
-
-`~/Library/Preferences/com.apple.spaces.plist`
-
-To read it use the `plutil` program.
-
-```bash
-plutil -p ~/Library/Preferences/com.apple.spaces.plist
-```
-
-You can convert the output of a `plist` file to `json`:
-
-```bash
-plutil -convert json -o spaces.json ~/Library/Preferences/com.apple.spaces.plist
-```
-
-Then use your preferred method of handling `JSON` files.
-
-I'm fond of [jq](https://github.com/jqlang/jq), a command-line JSON parser.
-
-```bash
-jq '.SpacesDisplayConfiguration["Management Data"]["Monitors"]["Spaces"]' spaces.json
-```
