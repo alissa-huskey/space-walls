@@ -1,4 +1,4 @@
-"""."""
+"""Contains logic pertaining to JSON files."""
 
 import json
 from json.decoder import JSONDecodeError
@@ -28,12 +28,12 @@ class File(Object):
 
     path = attr("path", setter=_validate_path)
 
-    def __init__(self, path = None):
+    def __init__(self, path: Path=None):
         """Make a File object."""
         self.path = path
         self._data = None
 
-    def __str__(self):
+    def __str__(self) -> str:
         """Print the path string if available."""
         if not self.path:
             return self.__repr__()
@@ -41,7 +41,7 @@ class File(Object):
 
     @property
     def data(self):
-        """Load data from JSON."""
+        """Returned parsed data from JSON."""
         if not self.path:
             return
 

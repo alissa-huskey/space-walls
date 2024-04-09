@@ -14,7 +14,8 @@ class SpacesFile(File):
             .get("Management Data", {}) \
             .get("Monitors", {})
 
-        spaces = monitors[0].get("Spaces")
+        data = monitors[0].get("Spaces")
+        spaces = {s["uuid"]: s for s in data}
 
         return spaces
 

@@ -22,7 +22,7 @@ def test_spaces_file_spaces(fixture_file):
     file = SpacesFile(json_file)
     spaces = file.spaces
 
-    assert isinstance(spaces, list)
+    assert isinstance(spaces, dict)
 
 
 @pytest.mark.skip
