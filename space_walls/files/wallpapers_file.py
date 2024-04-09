@@ -1,9 +1,8 @@
 """A Wallpapers JSON file."""
 
-from space_walls.file import File
-from .attr import attr
+from space_walls.files.json_file import JSONFile
 
-class WallpapersFile(File):
+class WallpapersFile(JSONFile):
     """The logic specific to the wallpapers.json file."""
 
     @property

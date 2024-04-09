@@ -1,17 +1,17 @@
 import pytest
 
-from space_walls.spaces_file import SpacesFile
+from space_walls.files.spaces_json_file import SpacesJSONFile
 
 
-def test_spaces_file(fixture_file):
+def test_spaces_json_file():
     """
-    WHEN: a SpacesFile object is instantiated with no path
+    WHEN: a SpacesJSONFile object is instantiated with no path
     THEN: it should still work
     """
-    file = SpacesFile()
+    file = SpacesJSONFile()
     assert file
 
-def test_spaces_file_spaces(fixture_file):
+def test_spaces_json_file_spaces(fixture_file):
     """
     GIVEN: a valid spaces file
     WHEN: .spaces is called
@@ -19,16 +19,16 @@ def test_spaces_file_spaces(fixture_file):
     """
     json_file = fixture_file("spaces.json")
 
-    file = SpacesFile(json_file)
+    file = SpacesJSONFile(json_file)
     spaces = file.spaces
 
     assert isinstance(spaces, dict)
 
 
 @pytest.mark.skip
-def test_spaces_file_spaces_invalid(fixture_file):
+def test_spaces_json_file_spaces_invalid(fixture_file):
     """
     GIVEN: something about .data that doesn't match our expectatios
     WHEN: when .spaces is called
-    THEN:a SpacesFileError should be raised
+    THEN:a SpacesJSONFile should be raised
     """

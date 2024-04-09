@@ -4,13 +4,13 @@ import json
 from json.decoder import JSONDecodeError
 from pathlib import Path
 
-from . import SpaceWallsAccessError, SpaceWallsFileError
-from .attr import attr
-from .object import Object
+from space_walls import SpaceWallsAccessError, SpaceWallsFileError
+from space_walls.attr import attr
+from space_walls.object import Object
 
 
 class File(Object):
-    """A JSON file."""
+    """A file."""
 
     def _validate_path(self, value):
         if not value:
@@ -19,10 +19,8 @@ class File(Object):
         if not path.is_file():
             raise SpaceWallsAccessError(f"Unable to open file: {path}")
 
-        self.contents = path.read_text().strip()
-
-        if not (path.stat().st_size and self.contents):
-            raise SpaceWallsFileError(f"Not a valid JSON file: {path}")
+        if not (path.stat().st_size):
+            raise SpaceWallsFileError(f"File is empty: {path}")
 
         self._path = path
 
@@ -40,15 +38,9 @@ class File(Object):
         return str(self.path)
 
     @property
-    def data(self):
-        """Returned parsed data from JSON."""
+    def contents(self):
+        """Return the file contents."""
         if not self.path:
             return
 
-        with self.path.open() as fp:
-            try:
-                data = json.load(fp)
-            except JSONDecodeError as e:
-                raise SpaceWallsFileError(f"Invalid JSON formatting: {e}")
-
-        return data
+        return self.path.read_text().strip()

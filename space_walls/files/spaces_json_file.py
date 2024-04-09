@@ -1,9 +1,8 @@
 """A spaces JSON file."""
 
-from space_walls.file import File
-from .attr import attr
+from space_walls.files.json_file import JSONFile
 
-class SpacesFile(File):
+class SpacesJSONFile(JSONFile):
     """The logic specific to the spaces.json file."""
 
     @property
@@ -18,9 +17,3 @@ class SpacesFile(File):
         spaces = {s["uuid"]: s for s in data}
 
         return spaces
-
-
-
-
-
-

@@ -1,6 +1,6 @@
 import pytest
 
-from space_walls.wallpapers_file import WallpapersFile
+from space_walls.files.wallpapers_file import WallpapersFile
 
 
 def test_wallpapers_file(fixture_file):
