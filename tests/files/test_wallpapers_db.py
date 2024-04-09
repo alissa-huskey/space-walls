@@ -14,22 +14,11 @@ def test_wallpapers_db():
 def test_wallpapers_db_images(fixture_file):
     """
     GIVEN: A database populated with all the things
-    WHEN: db.images is accessed
+    WHEN: db.wallpapers is accessed
     THEN: it should return all of the space_uuids and images
     """
     path = fixture_file("desktoppicture.db")
     db = WallpapersDB(path)
-    images = db.images
+    wps = db.wallpapers
 
-    assert len(images) == 9
-
-
-def test_wallpapers_db_():
-    """
-    GIVEN:
-    WHEN: ...
-    THEN: ...
-    """
-
-    db = WallpapersDB()
-    assert db
+    assert len(wps) == 9

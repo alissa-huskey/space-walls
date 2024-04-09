@@ -1,48 +1,56 @@
 """System configuration module."""
 
+from collections import namedtuple
 from itertools import chain
 
-from .object import Object
-from .spaces_file import SpacesFile
-from .wallpapers_file import WallpapersFile
+from space_walls.files.spaces_file import SpacesFile
+from space_walls.files.wallpapers_db import WallpapersDB
+from space_walls.object import Object
+
+Image = namedtuple("Image", ("space_number", "space_uuid", "data_id", "image_path"))
 
 
 class Config(Object):
     """Stores the system configuration related to wallpapers."""
 
-    def __init__(self, spaces_file = None, wallpapers_file = None):
+    def __init__(self, spaces_file=None, wallpapers_db=None):
         """Initialize config file.
 
         Arguments:
             spaces_file (Path): File that contains JSON file exported from com.apple.spaces.plist plist
-            wallpapers_file (Path): File that contains the JSON
+            wallpapers_db (Path): File that contains the JSON
             """
         self.spaces_file = SpacesFile(spaces_file)
-        self.wallpapers_file = WallpapersFile(wallpapers_file)
+        self.wallpapers_db = WallpapersDB(wallpapers_db)
 
     @property
     def spaces(self):
-        return self.spaces_file.spaces
+        """Return the spaces from the spaces file."""
+        return {space.uuid: space for space in self.spaces_file.spaces}
 
     @property
     def wallpapers(self):
-        return self.wallpapers_file.wallpapers
+        """Return the wallpapers from the wallpapers file."""
+        return {wp.space_uuid: wp for wp in self.wallpapers_db.wallpapers}
 
     @property
     def uuids(self):
+        """Return a list of all combined space UUIDs."""
         keys = set(chain(self.wallpapers.keys(), self.spaces.keys()))
-        return sorted(list(keys))
+        return list(keys)
 
     @property
     def images(self) -> dict:
         """Return a dictionary of desktop ID to image path."""
-        space, wall = self.spaces, self.wallpapers
+        spaces, walls = self.spaces, self.wallpapers
 
-        images = {
-            space[u]["ManagedSpaceID"]: wall[u]["wallpaper"]
-            for u in self.uuids
-            if u
-        }
-        images = dict(sorted(images.items(), key=lambda x: x[0]))
+        images = {}
+        for uuid in self.uuids:
+            space = spaces[uuid]
+            wp = walls[uuid]
+
+            image = Image(space.number, space.uuid, wp.data_id, wp.image_path)
+            images[space.number] = image
+
         return images
 

@@ -1,10 +1,9 @@
-from pathlib import Path
 from collections import namedtuple
+from pathlib import Path
 
 from space_walls.files.db import DB
 
-
-Image = namedtuple("Image", ("data_id", "space_uuid", "image_path"))
+Wallpaper = namedtuple("Wallpaper", ("data_id", "space_uuid", "image_path"))
 
 
 class WallpapersDB(DB):
@@ -31,8 +30,8 @@ class WallpapersDB(DB):
         self.path = self.path or self.DB_FILE
 
     @property
-    def images(self):
-        """Return a list of images from the database."""
+    def wallpapers(self):
+        """Return a list of wallpapers from the database."""
         data = self.select(self.QUERY)
-        images = [Image(*row) for row in data]
-        return data
+        wallpapers = [Wallpaper(*row) for row in data]
+        return wallpapers

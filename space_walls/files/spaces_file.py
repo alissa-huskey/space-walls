@@ -1,8 +1,11 @@
 """A spaces Plist file."""
 
 from pathlib import Path
+from collections import namedtuple
 
 from space_walls.files.plist_file import PlistFile
+
+Space = namedtuple("Space", ("uuid", "number"))
 
 class SpacesFile(PlistFile):
     """The logic specific to the spaces.json file."""
@@ -29,7 +32,8 @@ class SpacesFile(PlistFile):
         except IndexError:
             monitor = {}
 
-        spaces = monitor.get("Spaces", {})
+        data = monitor.get("Spaces", {})
+        spaces = [Space(s["uuid"], s["ManagedSpaceID"]) for s in data]
 
         return spaces
 
