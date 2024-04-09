@@ -52,5 +52,7 @@ class Config(Object):
             image = Image(space.number, space.uuid, wp.data_id, wp.image_path)
             images[space.number] = image
 
+        images = dict(sorted(images.items(), key=lambda x: x[0]))
+
         return images
 
