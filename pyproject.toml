@@ -6,7 +6,7 @@ authors = ["Alissa Huskey <alissa.huskey@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.10"
 more-itertools = "^10.2.0"
 
 [tool.pytest.ini_options]
@@ -28,6 +28,7 @@ pycodestyle = "^2.11.1"
 pylama = "^8.4.1"
 pylint = "^3.1.0"
 pytest = "^8.1.1"
+ipython = "^8.23.0"
 
 [build-system]
 requires = ["poetry-core"]
