@@ -11,7 +11,7 @@ class DB(File):
     def contents(self):
         """Noop"""
 
-    @cached_property
+    @property
     @contextmanager
     def cursor(self):
         """A cursor for the database connection."""
@@ -22,7 +22,7 @@ class DB(File):
             finally:
                 cursor.close()
 
-    @cached_property
+    @property
     @contextmanager
     def connection(self):
         """A context manager for the database connection."""
@@ -38,7 +38,7 @@ class DB(File):
 
     def select(self, query, *params):
         with self.cursor as cur:
-            cur.execute(query)
+            cur.execute(query, params)
             data = cur.fetchall()
 
         return data
