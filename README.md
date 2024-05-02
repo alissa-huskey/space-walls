@@ -1,20 +1,31 @@
 Mac OS Wallpapers
 =================
 
-This project is for a command-line tool to change the wallpapers on particular spaces.
+This project is for a command-line tool to change the wallpapers on each
+individual space (desktop) on macOS.
 
 There are other projects that do this such as [pywal][pywal]. But I haven't
 found one that supports different wallpapers for each desktop/space.
 
 [pywal]: https://github.com/dylanaraps/pywal
 
+Usage
+-----
+
+This command will display the current desktop image per space according to the
+`desktoppicture.db`.
+
+```
+walls
+```
+
 Status
 ------
 
-Planning.
+Defunct.
 
-So far I've just done a bunch of research. The information I've gathered can be
-found in [notes.md](doc/notes.md).
+It turns out that the way wallpapers are managed under the hood has changed as
+of macOS 14. So this project is basically useless.
 
 Alternatives
 ------------
