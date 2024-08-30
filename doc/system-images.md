@@ -1,18 +1,15 @@
 System Images
 =============
 
-System images are stored here:
+System images may be stored in the following locations:
 
 `/Library/Caches/Desktop Pictures/{uid}/lockscreen.png`
+`/System/Library/Desktop Pictures`
+`~/Library/Application Support/com.apple.mobileAssetDesktop/`
 
-This will give you a list of all pictures (though not the path).
+This may give you a list of all (built-in?) pictures.
 
 `plutil -p /System/Library/Desktop\ Pictures/.orderedPictures.plist | less`
-
-They may also be stored in one of the following:
-
-`~/Library/Application Support/com.apple.mobileAssetDesktop/`
-`/System/Library/Desktop Pictures`
 
 ### Default Desktop Picture
 
