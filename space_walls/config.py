@@ -46,8 +46,11 @@ class Config(Object):
 
         images = {}
         for uuid in self.uuids:
-            space = spaces[uuid]
-            wp = walls[uuid]
+            space = spaces.get(uuid)
+            wp = walls.get(uuid)
+
+            if not (space and wp):
+                continue
 
             image = Image(space.number, space.uuid, wp.data_id, wp.image_path)
             images[space.number] = image
@@ -55,4 +58,3 @@ class Config(Object):
         images = dict(sorted(images.items(), key=lambda x: x[0]))
 
         return images
-

@@ -1,4 +1,4 @@
-"""Contains logic pertaining to JSON files."""
+"""Contains logic pertaining to files."""
 
 import json
 from json.decoder import JSONDecodeError
